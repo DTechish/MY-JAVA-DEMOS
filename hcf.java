@@ -1,9 +1,8 @@
 /********************************************************************
- Author         ->  Daniel Glover - Akpey aka DNA Programmers
+ Author         ->  Daniel Glover - Akpey
  Date           ->  10th October 2020
- Instagram      ->  @dnaprogrammers & @danielglover607
- Twitter        ->  @dnaprogrammers
- Facebook Page  ->  DNA Programmers
+ Instagram      ->  @codingnewbies
+ Twitter        ->  @codingnewbies
  IDE            ->  IntelliJ IDEA Community Edition 2020.2.3
  JDK Version    ->  JDK-14.0.2
  *********************************************************************/
