@@ -4,21 +4,20 @@ import java.util.List;
 import java.util.Scanner;
 
 class Books{
-    public String title;
-    public String author;
-    public String edition;
-    public double price;
-    public int quantity;
+    private String title;
+    private String author;
+    private String edition;
+    private double price;
+    private int quantity;
 
     List<Books> books = new ArrayList<>();
 
     static Scanner scanner = new Scanner(System.in);
 
-    public Books(){
+    private Books(){
     }
 
-    public Books(String title, String author, String edition, double price, int quantity){
-        super();
+    private Books(String title, String author, String edition, double price, int quantity){
         this.title = title;
         this.author = author;
         this.edition = edition;
@@ -26,7 +25,7 @@ class Books{
         this.quantity = quantity;
     }
 
-    public void printBooks(){
+    private void printBooks(){
         int index = 1;
         if(books.isEmpty()){
             System.out.println("You must add a book first");
@@ -38,11 +37,11 @@ class Books{
         }
     }
 
-    public void updateBook(){
+    private void updateBook(){
         if(books.isEmpty()){
             System.out.println("You must add a book first");
         }else {
-            System.out.println("Enter book title: ");
+            System.out.print("Enter book title: ");
             String bookTitle = scanner.nextLine().trim();
             boolean isFound = false;
 
@@ -56,8 +55,29 @@ class Books{
             if(!isFound){
                 System.out.println("Book title not found!");
             }else{
-                System.out.println("Enter new book title: ");
+                List<String> bookTitles = new ArrayList<>();
+
+                for (Books book : books) {
+                    bookTitles.add(book.title);
+                }
+
+                System.out.print("Enter new book title: ");
                 String newBookTitle = scanner.nextLine().trim();
+
+                if(bookTitles.contains(newBookTitle)){
+                    System.out.println("Book title already exits!");
+                    return;
+                }else{
+                    int index = 0;
+                    while (index < books.size()) {
+                        if (books.get(index).title.equals(bookTitle)) {
+                            books.get(index).title = newBookTitle;
+                            System.out.println("Book title has been updated.");
+                            return;
+                        }
+                        ++index;
+                    }
+                }
 
                 for (Books book : books) {
                     if (!book.title.contains(newBookTitle)) {
@@ -72,11 +92,11 @@ class Books{
         }
     }
 
-    public void removeBook(){
+    private void removeBook(){
         if(books.isEmpty()){
             System.out.println("You must add a book first");
         }else {
-            System.out.println("Enter book title: ");
+            System.out.print("Enter book title: ");
             String bookTitle = scanner.nextLine().trim();
             boolean isFound = false;
 
@@ -86,24 +106,27 @@ class Books{
                     break;
                 }
             }
+
             if(!isFound) {
                 System.out.println("Book title not found!");
             }else{
                 for (Books book : books) {
-                    System.out.println("Book has been removed.");
-                    books.remove(book);
-                    break;
+                    if(book.title.equals(bookTitle)) {
+                        System.out.println("Book has been removed.");
+                        books.remove(book);
+                        break;
+                    }
                 }
             }
         }
     }
 
-    public Double sellBooks(){
+    private double sellBooks(){
         double totalAmount = 0.0;
         if(books.isEmpty()){
             System.out.println("You must add a book first");
         }else {
-            System.out.println("Enter book title: ");
+            System.out.print("Enter book title: ");
             String bookTitle = scanner.nextLine().trim();
             boolean isFound = false;
 
@@ -117,28 +140,30 @@ class Books{
                 System.out.println("Book title not found!");
             }else {
                 for (Books book : books) {
-                    System.out.println("Book has been sold with additional rate of 10%.");
-                    totalAmount = book.price * 10.0 / book.quantity;
+                    if (book.title.equals(bookTitle)) {
+                        System.out.println("Book has been sold with additional rate of 10%.");
+                        totalAmount = book.price / book.quantity * 10.0;
+                    }
                 }
             }
         }
         return totalAmount;
     }
 
-    public void printRevenue(){
+    private void printRevenue(){
         if(books.isEmpty()){
             System.out.println("You must add a book first");
         }else {
-            double sellPrice = sellBooks();
-            if(sellPrice == 0.0){
+            double sell = sellBooks();
+            if(sell == 0.0){
                 System.out.println("You have no revenue.");
             }else {
-                System.out.println("Revenue : " + sellPrice);
+                System.out.println("Revenue : $" + sell);
             }
         }
     }
 
-    public void addNewBook(){
+    private void addNewBook(){
         System.out.print("Enter book title: ");
         String bookTitle = scanner.nextLine().trim();
 
@@ -180,7 +205,7 @@ class Books{
     public static void main(String[] args) {
         System.out.println("\nBOOK APPLICATION\n1.Adding New Book\n2.Update A Book\n3.Remove A Book\n4.Print All Books\n5.Print Revenue\n6.Sell Book\n7.Exit");
         Books book = new Books();
-        String userOption ;
+        String userOption;
 
         while(true){
             System.out.print("\nEnter an option(1-6): ");
