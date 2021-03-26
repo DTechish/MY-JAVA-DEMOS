@@ -112,8 +112,8 @@ class Books{
             }else{
                 for (Books book : books) {
                     if(book.title.equals(bookTitle)) {
-                        System.out.println("Book has been removed.");
                         books.remove(book);
+                        System.out.println("Book has been removed.");
                         break;
                     }
                 }
