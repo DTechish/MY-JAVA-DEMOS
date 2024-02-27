@@ -23,7 +23,7 @@ public class hcf {
     }
 
     public int getNumOfInput(){
-        System.out.print("How many number do you want to find LCM: ");
+        System.out.print("How many number do you want to find HCF: ");
 
         return scanner.nextInt();
     }
