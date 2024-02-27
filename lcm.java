@@ -1,8 +1,6 @@
 /********************************************************************
- Author         ->  Daniel Glover - Akpey 
+ Author         ->  Daniel Glover
  Date           ->  10th October 2020
- Instagram      ->  @dtechish
- Twitter        ->  @dtechish
  IDE            ->  IntelliJ IDEA Community Edition 2020.2.3
  JDK Version    ->  JDK-14.0.2
  *********************************************************************/
